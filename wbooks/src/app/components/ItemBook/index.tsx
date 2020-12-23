@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { Book } from '@interfaces/index';
+import { Book } from '@interfaces/Book';
 
 import styles from './styles';
 
