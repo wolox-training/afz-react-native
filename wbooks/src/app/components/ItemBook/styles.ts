@@ -1,31 +1,28 @@
 import { StyleSheet } from 'react-native';
+import Colors from '@constants/Colors';
 
 export default StyleSheet.create({
-  viewbook: {
+  bookContainer: {
     marginTop: 80,
-    flex: 1,
     padding: 10,
     marginHorizontal: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderColor: Colors.opacityColor,
+    borderWidth: 1
   },
-  viewcover: {
+  coverContainer: {
     width: '30%',
     alignItems: 'center'
   },
-  cover: {
-    width: 50,
-    height: 80
-  },
-  // eslint-disable-next-line react-native/no-color-literals
-  viewvacio: {
+  imageContainer: {
     width: 50,
     height: 80,
-    backgroundColor: '#333333'
+    backgroundColor: Colors.bgColor
   },
-  viewtext: {
+  textContainer: {
     width: '70%'
   },
-  name: {
+  title: {
     fontSize: 20,
     fontWeight: 'bold'
   },

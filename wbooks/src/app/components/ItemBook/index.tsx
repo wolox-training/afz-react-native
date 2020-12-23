@@ -6,16 +6,16 @@ import styles from './styles';
 
 function ItemBook({ title, author, imageUrl }: Book) {
   return (
-    <View style={styles.viewbook}>
-      <View style={styles.viewcover}>
+    <View style={styles.bookContainer}>
+      <View style={styles.coverContainer}>
         {imageUrl === null ? (
-          <View style={styles.viewvacio} />
+          <View style={styles.imageContainer} />
         ) : (
-          <Image source={{ uri: imageUrl }} style={styles.viewvacio} />
+          <Image source={{ uri: imageUrl }} style={styles.imageContainer} />
         )}
       </View>
-      <View style={styles.viewtext}>
-        <Text style={styles.name}>{title}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{title}</Text>
         <Text style={styles.author}>{author}</Text>
       </View>
     </View>
