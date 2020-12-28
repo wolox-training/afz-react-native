@@ -3,12 +3,13 @@ import Colors from '@constants/Colors';
 
 export default StyleSheet.create({
   bookContainer: {
-    marginTop: 80,
+    marginTop: 10,
     padding: 10,
     marginHorizontal: 20,
     flexDirection: 'row',
     borderColor: Colors.opacityColor,
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 5
   },
   coverContainer: {
     width: '30%',
@@ -27,6 +28,7 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   author: {
-    fontSize: 13
+    fontSize: 13,
+    color: Colors.opacityColor
   }
 });
