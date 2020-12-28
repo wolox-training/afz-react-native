@@ -6,16 +6,16 @@ import { Book } from '@interfaces/Book';
 
 import styles from './styles';
 
-const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => <ItemBook {...item} />;
-
 function BookList() {
+  const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => <ItemBook {...item} />;
+  const keyExtractor = (item: Book) => `${item.id}`;
   return (
     <>
       <FlatList
         style={styles.bookListContainer}
         data={BOOKS_MOCK}
         renderItem={renderItem}
-        keyExtractor={(item: Book) => `${item.id}`}
+        keyExtractor={keyExtractor}
       />
     </>
   );
