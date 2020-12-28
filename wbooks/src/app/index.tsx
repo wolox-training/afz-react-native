@@ -9,8 +9,7 @@
  */
 
 import React from 'react';
-import { BOOKS_MOCK } from '@constants/mockBooks';
-import ItemBook from '@app/components/ItemBook';
+import BookList from '@app/components/BookList';
 
 declare global {
   interface Console {
@@ -21,7 +20,7 @@ declare global {
 const App = () => {
   return (
     <>
-      <ItemBook title={BOOKS_MOCK[2].title} author={BOOKS_MOCK[2].author} imageUrl={BOOKS_MOCK[2].imageUrl} />
+      <BookList />
     </>
   );
 };
