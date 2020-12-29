@@ -1,13 +1,24 @@
 import React from 'react';
-import { FlatList, ListRenderItem } from 'react-native';
+import { FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import ItemBook from '@components/ItemBook';
 import { BOOKS_MOCK } from '@constants/mockBooks';
 import { Book } from '@interfaces/Book';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
 function BookList() {
-  const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => <ItemBook {...item} />;
+  const navigation = useNavigation();
+  const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
+    const bookDetails = () => {
+      navigation.navigate('BookDetails', { item });
+    };
+    return (
+      <TouchableOpacity onPress={bookDetails}>
+        <ItemBook {...item} />
+      </TouchableOpacity>
+    );
+  };
   const keyExtractor = (item: Book) => `${item.id}`;
   return (
     <>
