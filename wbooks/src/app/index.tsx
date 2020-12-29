@@ -8,8 +8,12 @@
  * @format
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import BookList from '@app/components/BookList';
+import BookDetails from '@app/screens/BookDetails';
+import { createStackNavigator } from '@react-navigation/stack';
 
 declare global {
   interface Console {
@@ -17,11 +21,16 @@ declare global {
   }
 }
 
+const Stack = createStackNavigator();
+
 const App = () => {
   return (
-    <>
-      <BookList />
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="BookList">
+        <Stack.Screen name="BookList" component={BookList} options={{ headerShown: false }} />
+        <Stack.Screen name="BookDetails" component={BookDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
