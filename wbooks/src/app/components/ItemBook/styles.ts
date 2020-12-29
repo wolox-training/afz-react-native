@@ -22,13 +22,5 @@ export default StyleSheet.create({
   },
   textContainer: {
     width: '70%'
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  author: {
-    fontSize: 13,
-    color: Colors.opacityColor
   }
 });
