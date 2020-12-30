@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { Book } from '@interfaces/Book';
-import AppStyles from '@constants/AppStyles';
 
 import styles from './styles';
 
@@ -16,8 +15,8 @@ function ItemBook({ title, author, imageUrl }: Book) {
         )}
       </View>
       <View style={styles.textContainer}>
-        <Text style={AppStyles.title}>{title}</Text>
-        <Text style={AppStyles.textDetails}>{author}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.textDetails}>{author}</Text>
       </View>
     </View>
   );

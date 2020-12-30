@@ -43,5 +43,13 @@ export default StyleSheet.create({
   },
   textSecondary: {
     color: Colors.secondary
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  textDetails: {
+    fontSize: 15,
+    color: Colors.opacityColor
   }
 });
