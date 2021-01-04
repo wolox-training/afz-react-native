@@ -9,15 +9,11 @@ function CommentsBook({ url, author, text }: Comments) {
     <>
       <View style={styles.commenstContainer}>
         <View style={styles.imageContainer}>
-          {url === null ? (
-            <View style={styles.image} />
-          ) : (
-            <Image source={{ uri: url }} style={styles.imageContainer} />
-          )}
+          {url === null ? <View /> : <Image source={{ uri: url }} style={styles.imageContainer} />}
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{author}</Text>
-          <Text style={styles.author}>{text}</Text>
+          <Text style={styles.author}>{author}</Text>
+          <Text style={styles.text}>{text}</Text>
         </View>
       </View>
     </>

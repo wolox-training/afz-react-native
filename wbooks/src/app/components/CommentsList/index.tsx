@@ -8,12 +8,13 @@ import styles from './styles';
 
 function CommentList() {
   const [limit, setLimit] = useState(2);
+  const maxComments = COMMENTS_MOCK.length;
   const renderItem: ListRenderItem<Comments> = ({ item }: { item: Comments }) => {
     return <CommentsBook {...item} />;
   };
   const keyExtractor = (item: Comments) => `${item.id}`;
   const viewAll = () => {
-    setLimit(5);
+    setLimit(maxComments);
   };
   const hidenComments = () => {
     setLimit(2);

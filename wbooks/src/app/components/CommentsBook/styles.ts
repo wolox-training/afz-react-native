@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Colors from '@constants/Colors';
 
+const size = 50;
 export default StyleSheet.create({
   commenstContainer: {
     marginHorizontal: 20,
@@ -8,19 +9,17 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   imageContainer: {
-    alignSelf: 'center'
-  },
-  image: {
-    width: 50,
-    height: 50,
+    alignSelf: 'center',
+    width: size,
+    height: size,
     backgroundColor: Colors.bgColor,
-    borderRadius: 50
+    borderRadius: size
   },
-  title: {
+  author: {
     fontSize: 20,
     fontWeight: 'bold'
   },
-  author: {
+  text: {
     fontSize: 13,
     color: Colors.opacityColor
   },
