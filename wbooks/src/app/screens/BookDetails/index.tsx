@@ -8,19 +8,20 @@ import styles from './styles';
 
 function BookDetails() {
   const route = useRoute<RouteBook>();
+  const { imageUrl, title, author, year, genre } = route.params.item;
   return (
     <ScrollView>
       <View style={styles.detailsContainer}>
-        {route.params.item.imageUrl === null ? (
+        {imageUrl === null ? (
           <View style={styles.imageContainerDetails} />
         ) : (
-          <Image source={{ uri: route.params.item.imageUrl }} style={styles.imageContainerDetails} />
+          <Image source={{ uri: imageUrl }} style={styles.imageContainerDetails} />
         )}
         <View style={styles.detailsTextContainer}>
-          <Text style={styles.title}>{route.params.item.title}</Text>
-          <Text style={styles.textDetails}>{route.params.item.author}</Text>
-          <Text style={styles.textDetails}>{route.params.item.year}</Text>
-          <Text style={styles.textDetails}>{route.params.item.genre}</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.textDetails}>{author}</Text>
+          <Text style={styles.textDetails}>{year}</Text>
+          <Text style={styles.textDetails}>{genre}</Text>
         </View>
       </View>
       <View style={styles.buttonsContainer}>
