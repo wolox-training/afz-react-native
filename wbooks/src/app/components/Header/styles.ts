@@ -1,25 +1,24 @@
 import Colors from '@constants/Colors';
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
+const space = 10;
 export default StyleSheet.create({
   headerImage: {
-    width: Dimensions.get('window').width,
+    width: '100%',
     height: 120,
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   titleHeader: {
-    width: '60%',
     color: Colors.primary,
     textAlign: Platform.OS === 'ios' ? 'center' : 'left',
     fontWeight: 'bold',
-    fontSize: 18
+    fontSize: 18,
+    flexGrow: 2,
+    marginRight: space + 20
   },
   buttonBack: {
-    width: '20%',
-    alignItems: 'center'
-  },
-  right: {
-    width: '20%'
+    marginLeft: space
   }
 });
