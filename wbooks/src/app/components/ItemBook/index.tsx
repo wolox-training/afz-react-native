@@ -16,7 +16,7 @@ function ItemBook({ title, author, imageUrl }: Book) {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.author}>{author}</Text>
+        <Text style={styles.textDetails}>{author}</Text>
       </View>
     </View>
   );
