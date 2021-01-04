@@ -18,7 +18,8 @@ export default StyleSheet.create({
     width: '60%'
   },
   buttonsContainer: {
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    marginBottom: 20
   },
   buttonPrimary: {
     backgroundColor: Colors.secondary

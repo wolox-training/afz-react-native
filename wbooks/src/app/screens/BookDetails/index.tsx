@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { RouteBook } from '@interfaces/RouteBook';
+import CommentsList from '@components/CommentsList';
 
 import styles from './styles';
 
@@ -31,6 +32,7 @@ function BookDetails() {
           <Text style={[styles.textButton, styles.textPrimary]}>RENT</Text>
         </TouchableOpacity>
       </View>
+      <CommentsList />
     </ScrollView>
   );
 }
