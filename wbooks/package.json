@@ -82,12 +82,15 @@
   "jest": {
     "preset": "react-native",
     "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
+    "setupFiles": [
+      "<rootDir>/__test__/setup/jestSetupFile.js"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/__tests__/setup/"
     ],
     "transformIgnorePatterns": [
-      "/node_modules/@react-native-community/async-storage/(?!(lib))"
+      "/node_modules/@react-native-async-storage/async-storage/(?!(lib))"
     ],
     "moduleFileExtensions": [
       "ts",
