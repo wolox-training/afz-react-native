@@ -1,13 +1,15 @@
 import React from 'react';
 import { FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import ItemBook from '@components/ItemBook';
-import { BOOKS_MOCK } from '@constants/mockBooks';
 import { Book } from '@interfaces/Book';
 import { useNavigation } from '@react-navigation/native';
+import store from '@redux/store';
+import { getBooks } from '@redux/book/actions';
 
 import styles from './styles';
 
 function BookList() {
+  const data = store.dispatch(getBooks());
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {
@@ -24,7 +26,7 @@ function BookList() {
     <>
       <FlatList
         style={styles.bookListContainer}
-        data={BOOKS_MOCK}
+        data={data.books}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />
