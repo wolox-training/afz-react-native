@@ -3,13 +3,14 @@ import { FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
 import { useNavigation } from '@react-navigation/native';
-import store from '@redux/store';
 import { getBooks } from '@redux/book/actions';
+import { useDispatch } from 'react-redux';
 
 import styles from './styles';
 
 function BookList() {
-  const data = store.dispatch(getBooks());
+  const dispatch = useDispatch();
+  const data = dispatch(getBooks());
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {

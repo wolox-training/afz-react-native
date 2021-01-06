@@ -20,6 +20,8 @@ import icLibraryActive from '@assets/ic_library_active.png';
 import icSettings from '@assets/ic_settings.png';
 import icSettingsActive from '@assets/ic_settings_active.png';
 import Colors from '@constants/Colors';
+import { Provider } from 'react-redux';
+import store from '@redux/store';
 
 import styles from './styles';
 
@@ -43,12 +45,14 @@ const App = () => {
     }
   });
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={tabBarOptions}>
-        <Tab.Screen name="Library" component={Library} />
-        <Tab.Screen name="Dummy" component={Dummy} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tab.Navigator screenOptions={tabBarOptions}>
+          <Tab.Screen name="Library" component={Library} />
+          <Tab.Screen name="Dummy" component={Dummy} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
