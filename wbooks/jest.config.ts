@@ -1,4 +1,8 @@
-export default {
+import type { Config } from '@jest/types';
+
+// Sync object
+const config: Config.InitialOptions = {
+  verbose: true,
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'png', 'jpg', 'html'],
   collectCoverage: false,
@@ -10,7 +14,7 @@ export default {
     '!src/**/config/*.{js,ts}',
     '!src/**/constants/*.{js,ts}'
   ],
-  coveragePathIgnorePatterns: ['/node_modules/', '/jest'],
+  coveragePathIgnorePatterns: ['/node_modules/'],
   setupFilesAfterEnv: [
     '<rootDir>/setup.js',
     './node_modules/react-native-gesture-handler/jestSetup.js',
@@ -28,3 +32,4 @@ export default {
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.history/', '/__tests__/utils/*']
 };
+export default config;
