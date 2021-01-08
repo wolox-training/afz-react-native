@@ -1,38 +1,37 @@
+import { Book } from '@interfaces/Book';
+
 interface Action {
+  payload: Book[] | string;
   type: string;
-  books: any;
-  loading: boolean;
-  error: string;
 }
 interface State {
-  books: any;
+  books: Book[] | string;
   loading: boolean;
-  error: string;
+  error: string | Book[];
 }
 const initialState: State = {
   books: [],
-  loading: false,
+  loading: true,
   error: ''
 };
 
-const reducer = (state = initialState, action: Action) => {
+const reducer = (state = initialState, action: Action): State => {
   switch (action.type) {
     case 'GET_BOOKS':
       return {
-        ...state,
-        loading: action.loading
+        ...state
       };
     case 'GET_BOOKS_SUCCESS':
       return {
         ...state,
-        books: action.books,
-        loading: action.loading
+        books: action.payload,
+        loading: false
       };
     case 'GET_BOOKS_FAILURE':
       return {
         ...state,
-        loading: action.loading,
-        error: action.error
+        loading: false,
+        error: action.payload
       };
     default:
       return state;

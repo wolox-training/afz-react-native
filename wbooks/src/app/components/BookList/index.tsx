@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
+import { BookState } from '@interfaces/BookState';
 import { useNavigation } from '@react-navigation/native';
-import { GetBooks } from '@redux/book/actions';
-import { connect } from 'react-redux';
+import { actionsCreator } from '@redux/book/actions';
+import { connect, useDispatch } from 'react-redux';
 
 import styles from './styles';
 
-function BookList(props: {
+interface Props {
   getBooks: () => void;
   loading: boolean;
-  books: readonly Book[] | null | undefined;
-}) {
-  if (props.books?.length === 0) {
-    GetBooks();
+  books: Book[] | null | undefined;
+}
+
+function BookList({ getBooks, loading, books }: Props) {
+  const dispatch = useDispatch();
+  if (books?.length === 0) {
+    dispatch(getBooks);
   }
+
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {
@@ -30,14 +35,14 @@ function BookList(props: {
   const keyExtractor = (item: Book) => `${item.id}`;
   return (
     <>
-      {props.loading ? (
+      {loading ? (
         <View style={styles.loadingContainer}>
           <Text style={styles.textLoading}>Loading...</Text>
         </View>
       ) : (
         <FlatList
           style={styles.bookListContainer}
-          data={props.books}
+          data={books}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
         />
@@ -46,18 +51,16 @@ function BookList(props: {
   );
 }
 
-const mapStateToProps = (state: { books: any; loading: any }) => {
+const mapStateToProps = ({ books, loading }: BookState) => {
   return {
-    books: state.books,
-    loading: state.loading
+    books,
+    loading
   };
 };
 
-const mapDispachtToProps = (dispacht: any) => {
+const mapDispachtToProps = (dispatch: Dispatch<any>) => {
   return {
-    getBooks() {
-      dispacht(GetBooks());
-    }
+    getBooks: () => dispatch(actionsCreator())
   };
 };
 
