@@ -1,7 +1,10 @@
 import { Book } from '@interfaces/Book';
 
 interface Action {
-  payload: Book[] | string;
+  payload: {
+    books: Book[];
+    error: string;
+  };
   type: string;
 }
 interface State {
@@ -11,7 +14,7 @@ interface State {
 }
 const initialState: State = {
   books: [],
-  loading: true,
+  loading: false,
   error: ''
 };
 
@@ -19,19 +22,22 @@ const reducer = (state = initialState, action: Action): State => {
   switch (action.type) {
     case 'GET_BOOKS':
       return {
-        ...state
+        ...state,
+        loading: true,
+        error: ''
       };
     case 'GET_BOOKS_SUCCESS':
       return {
         ...state,
-        books: action.payload,
-        loading: false
+        books: action.payload.books,
+        loading: false,
+        error: ''
       };
     case 'GET_BOOKS_FAILURE':
       return {
         ...state,
         loading: false,
-        error: action.payload
+        error: action.payload.error
       };
     default:
       return state;

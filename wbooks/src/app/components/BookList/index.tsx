@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { useEffect } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
@@ -17,9 +17,9 @@ interface Props {
 
 function BookList({ getBooks, loading, books }: Props) {
   const dispatch = useDispatch();
-  if (books?.length === 0) {
-    dispatch(getBooks);
-  }
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch, getBooks]);
 
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
@@ -58,9 +58,9 @@ const mapStateToProps = ({ books, loading }: BookState) => {
   };
 };
 
-const mapDispachtToProps = (dispatch: Dispatch<any>) => {
+const mapDispachtToProps = () => {
   return {
-    getBooks: () => dispatch(actionsCreator())
+    getBooks: () => actionsCreator.getBooks
   };
 };
 

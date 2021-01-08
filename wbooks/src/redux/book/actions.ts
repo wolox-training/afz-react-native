@@ -7,16 +7,16 @@ export const actions = {
   GET_BOOKS_FAILURE: 'GET_BOOKS_FAILURE'
 } as const;
 
-const actionsCreator = () => {
-  return function getBooks(dispatch: Dispatch<any>) {
+const actionsCreator = {
+  getBooks: (dispatch: Dispatch<any>) => {
     dispatch({ type: actions.GET_BOOKS });
-    const response = { ok: true, data: BOOKS_MOCK, error: '' };
+    const response = { ok: true, data: BOOKS_MOCK };
     if (response.ok) {
-      dispatch({ type: actions.GET_BOOKS_SUCCESS, payload: response.data });
+      dispatch({ type: actions.GET_BOOKS_SUCCESS, payload: { books: response.data } });
     } else {
-      dispatch({ type: actions.GET_BOOKS_FAILURE, payload: response.error });
+      dispatch({ type: actions.GET_BOOKS_FAILURE, payload: { error: response.data } });
     }
-  };
+  }
 };
 
 export { actionsCreator };
