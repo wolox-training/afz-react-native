@@ -20,7 +20,7 @@ function BookList() {
   }, [dispatch]);
 
   const book = useSelector((state: State) => state.book);
-
+  const { books, booksLoading } = book;
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {
@@ -35,14 +35,14 @@ function BookList() {
   const keyExtractor = (item: Book) => `${item.id}`;
   return (
     <>
-      {book.booksLoading ? (
+      {booksLoading ? (
         <View style={styles.loadingContainer}>
           <Text style={styles.textLoading}>Loading...</Text>
         </View>
       ) : (
         <FlatList
           style={styles.bookListContainer}
-          data={book.books}
+          data={books}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
         />
