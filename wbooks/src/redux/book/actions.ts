@@ -1,22 +1,14 @@
-import { BOOKS_MOCK } from '@constants/mockBooks';
-import { Dispatch } from 'react';
+import { createTypes, completeTypes } from 'redux-recompose';
+import { bookService } from '@services/BooksService';
 
-export const actions = {
-  GET_BOOKS: 'GET_BOOKS',
-  GET_BOOKS_SUCCESS: 'GET_BOOKS_SUCCESS',
-  GET_BOOKS_FAILURE: 'GET_BOOKS_FAILURE'
-} as const;
+export const actions = createTypes(completeTypes(['GET_BOOKS']), '@@BOOKS');
 
-const actionsCreator = {
-  getBooks: (dispatch: Dispatch<any>) => {
-    dispatch({ type: actions.GET_BOOKS });
-    const response = { ok: true, data: BOOKS_MOCK };
-    if (response.ok) {
-      dispatch({ type: actions.GET_BOOKS_SUCCESS, payload: { books: response.data } });
-    } else {
-      dispatch({ type: actions.GET_BOOKS_FAILURE, payload: { error: response.data } });
-    }
-  }
+const actionCreators = {
+  getBooks: () => ({
+    type: actions.GET_BOOKS,
+    target: 'books',
+    service: bookService
+  })
 };
 
-export { actionsCreator };
+export default actionCreators;
