@@ -1,47 +1,16 @@
-import { Book } from '@interfaces/Book';
+import { createReducer, completeReducer, completeState } from 'redux-recompose';
+import Immutable from 'seamless-immutable';
 
-interface Action {
-  payload: {
-    books: Book[];
-    error: string;
-  };
-  type: string;
-}
-interface State {
-  books: Book[] | string;
-  loading: boolean;
-  error: string | Book[];
-}
-const initialState: State = {
-  books: [],
-  loading: false,
-  error: ''
+import { actions } from './actions';
+
+const initialStateDescription = {
+  books: null
 };
 
-const reducer = (state = initialState, action: Action): State => {
-  switch (action.type) {
-    case 'GET_BOOKS':
-      return {
-        ...state,
-        loading: true,
-        error: ''
-      };
-    case 'GET_BOOKS_SUCCESS':
-      return {
-        ...state,
-        books: action.payload.books,
-        loading: false,
-        error: ''
-      };
-    case 'GET_BOOKS_FAILURE':
-      return {
-        ...state,
-        loading: false,
-        error: action.payload.error
-      };
-    default:
-      return state;
-  }
+const initialState = completeState(initialStateDescription);
+
+const reducerDescription = {
+  primaryActions: [actions.GET_BOOKS]
 };
 
-export default reducer;
+export default createReducer(Immutable(initialState), completeReducer(reducerDescription));

@@ -1,6 +1,14 @@
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, compose, createStore, combineReducers as CR } from 'redux';
 import Reactotron from '@config/reactotronConfig';
-import reducer from '@redux/book/reducer';
+import book from '@redux/book/reducer';
 import thunk from 'redux-thunk';
+import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 
-export default createStore(reducer, compose(applyMiddleware(thunk), Reactotron.createEnhancer()));
+const middlewares = [thunk, fetchMiddleware];
+const enhancers = [applyMiddleware(...middlewares), Reactotron.createEnhancer()];
+
+const rootReducer = CR({
+  book
+});
+configureMergeState((state: any, newContent: any) => state.merge(newContent));
+export default createStore(rootReducer, compose(...enhancers));

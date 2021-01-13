@@ -4,22 +4,22 @@ import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
 import { BookState } from '@interfaces/BookState';
 import { useNavigation } from '@react-navigation/native';
-import { actionsCreator } from '@redux/book/actions';
-import { connect, useDispatch } from 'react-redux';
+import actionCreators from '@redux/book/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './styles';
 
-interface Props {
-  getBooks: () => void;
-  loading: boolean;
-  books: Book[] | null | undefined;
+interface State {
+  book: BookState;
 }
 
-function BookList({ getBooks, loading, books }: Props) {
+function BookList() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getBooks());
-  }, [dispatch, getBooks]);
+    dispatch(actionCreators.getBooks());
+  }, [dispatch]);
+
+  const book = useSelector((state: State) => state.book);
 
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
@@ -35,14 +35,14 @@ function BookList({ getBooks, loading, books }: Props) {
   const keyExtractor = (item: Book) => `${item.id}`;
   return (
     <>
-      {loading ? (
+      {book.booksLoading ? (
         <View style={styles.loadingContainer}>
           <Text style={styles.textLoading}>Loading...</Text>
         </View>
       ) : (
         <FlatList
           style={styles.bookListContainer}
-          data={books}
+          data={book.books}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
         />
@@ -51,17 +51,4 @@ function BookList({ getBooks, loading, books }: Props) {
   );
 }
 
-const mapStateToProps = ({ books, loading }: BookState) => {
-  return {
-    books,
-    loading
-  };
-};
-
-const mapDispachtToProps = () => {
-  return {
-    getBooks: () => actionsCreator.getBooks
-  };
-};
-
-export default connect(mapStateToProps, mapDispachtToProps)(BookList);
+export default BookList;

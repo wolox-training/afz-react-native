@@ -1428,6 +1428,11 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/seamless-immutable@^7.1.15":
+  version "7.1.15"
+  resolved "https://registry.yarnpkg.com/@types/seamless-immutable/-/seamless-immutable-7.1.15.tgz#eacc868b98ef677493bc7ea8e2ff0f5288389335"
+  integrity sha512-8OKW2jocSNv0oQYbimzqZeYDJ13yIOWcf5eTS7y3IDJfGg0A4tf3lQnBO9UPWP8PZA4Zt9b/hb8xHGypTf14zg==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz"
@@ -6945,9 +6950,14 @@ redent@^2.0.0:
     indent-string "^3.0.0"
     strip-indent "^2.0.0"
 
+redux-recompose@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/redux-recompose/-/redux-recompose-2.2.0.tgz"
+  integrity sha512-Iy0H3lbQm4UL26CyDstqtLulpQmnDEhgxRKJQXTTi8LiuCu2B/hSgiaAq+uixXbj/5vKULFXRYTqCW1UEGDeuA==
+
 redux-thunk@^2.3.0:
   version "2.3.0"
-  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.3.0.tgz"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
 
 redux@^4.0.0, redux@^4.0.5:
@@ -7293,6 +7303,11 @@ scheduler@^0.20.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+seamless-immutable@^7.1.4:
+  version "7.1.4"
+  resolved "https://registry.yarnpkg.com/seamless-immutable/-/seamless-immutable-7.1.4.tgz#6e9536def083ddc4dea0207d722e0e80d0f372f8"
+  integrity sha512-XiUO1QP4ki4E2PHegiGAlu6r82o5A+6tRh7IkGGTVg/h+UoeX4nFBeCGPOhb4CYjvkqsfm/TUtvOMYC1xmV30A==
 
 semver-compare@^1.0.0:
   version "1.0.0"
