@@ -1,8 +1,22 @@
-import { BOOKS_MOCK } from '@constants/mockBooks';
+import api from '@config/api';
+import { ApiResponse, ApiErrorResponse, CLIENT_ERROR } from 'apisauce';
 
-export const bookService = () => {
-  return Promise.resolve({
-    ok: true,
-    data: BOOKS_MOCK
-  }) as Promise<any>;
+export const login = (email: any, password: any) => {
+  return api.post('/auth/sign_in', { email, password });
+};
+
+export const bookService = async () => {
+  try {
+    const user = login('ignacio.coluccio@wolox.com.ar', 'wolox1189');
+    return Promise.resolve({
+      ok: true,
+      data: (await api.get('/books', (await user).headers)).data
+    }) as Promise<ApiResponse<any>>;
+  } catch (e) {
+    return Promise.resolve({
+      ok: false,
+      problem: CLIENT_ERROR,
+      originalError: e.message
+    }) as Promise<ApiErrorResponse<any>>;
+  }
 };
