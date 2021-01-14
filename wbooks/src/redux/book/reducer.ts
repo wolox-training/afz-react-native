@@ -7,7 +7,7 @@ const initialStateDescription = {
   books: null
 };
 
-const initialState = completeState(initialStateDescription);
+export const initialState = completeState(initialStateDescription);
 
 const reducerDescription = {
   primaryActions: [actions.GET_BOOKS]
