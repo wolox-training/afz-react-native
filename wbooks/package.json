@@ -27,6 +27,7 @@
     "@testing-library/jest-native": "^3.4.3",
     "@testing-library/react-native": "^7.1.0",
     "@types/seamless-immutable": "^7.1.15",
+    "apisauce": "^2.0.1",
     "react": "16.13.1",
     "react-dom": "^17.0.1",
     "react-native": "0.63.3",
