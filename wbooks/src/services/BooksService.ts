@@ -1,8 +1,6 @@
-import { BOOKS_MOCK } from '@constants/mockBooks';
+import api from '@config/api';
 
-export const bookService = () => {
-  return Promise.resolve({
-    ok: true,
-    data: BOOKS_MOCK
-  }) as Promise<any>;
-};
+export const login = ({ email, password }: { email: string; password: string }) =>
+  api.post('/auth/sign_in', { email, password });
+
+export const bookService = (headers: any) => api.get('/books', headers);

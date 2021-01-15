@@ -6,6 +6,7 @@ import { BookState } from '@interfaces/BookState';
 import { useNavigation } from '@react-navigation/native';
 import actionCreators from '@redux/book/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import Config from 'react-native-config';
 
 import styles from './styles';
 
@@ -16,7 +17,7 @@ interface State {
 function BookList() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(actionCreators.getBooks());
+    dispatch(actionCreators.login(Config.EMAIL_USER, Config.PASS_USER));
   }, [dispatch]);
 
   const book = useSelector((state: State) => state.book);

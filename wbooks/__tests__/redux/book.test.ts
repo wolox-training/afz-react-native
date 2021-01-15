@@ -1,7 +1,9 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { fetchMiddleware } from 'redux-recompose';
+import Config from 'react-native-config';
 
+import api from '../../src/config/api';
 import BookReducer, { initialState } from '../../src/redux/book/reducer';
 import BookActions, { actions, targets } from '../../src/redux/book/actions';
 import { bookService } from '../../src/services/BooksService';
@@ -16,6 +18,11 @@ const actionSuccess = {
   type: actions.GET_BOOKS_SUCCESS,
   target: targets.books,
   service: bookService
+};
+
+export const login = (credentials: { email: string; password: string }) => {
+  const { email, password } = credentials;
+  return api.post('/auth/sign_in', { email, password });
 };
 
 describe('BookReducer test', () => {
@@ -39,13 +46,13 @@ describe('BookActions test', () => {
   const middlewares = [thunk, fetchMiddleware];
   const mockStore = configureStore(middlewares);
 
-  it('should dispatch action', () => {
+  it('should dispatch action login', () => {
     const store = mockStore(initialState);
 
-    store.dispatch(BookActions.getBooks());
+    store.dispatch(BookActions.login(Config.EMAIL_USER, Config.PASS_USER));
 
     const actionsStore = store.getActions();
-    const expectedPayload = { type: '@@BOOKS/GET_BOOKS', target: 'books' };
+    const expectedPayload = { type: '@@BOOKS/LOGIN' };
     expect(actionsStore).toEqual([expectedPayload]);
   });
 });

@@ -4,14 +4,14 @@ import { Book } from '@interfaces/Book';
 
 import styles from './styles';
 
-function ItemBook({ title, author, imageUrl }: Book) {
+function ItemBook({ title, author, image }: Book) {
   return (
     <View style={styles.bookContainer}>
       <View style={styles.coverContainer}>
-        {imageUrl === null ? (
+        {image.url === null ? (
           <View style={styles.imageContainer} />
         ) : (
-          <Image source={{ uri: imageUrl }} style={styles.imageContainer} />
+          <Image source={{ uri: image.url }} style={styles.imageContainer} />
         )}
       </View>
       <View style={styles.textContainer}>

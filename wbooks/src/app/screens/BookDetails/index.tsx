@@ -8,14 +8,14 @@ import styles from './styles';
 
 function BookDetails() {
   const route = useRoute<RouteBook>();
-  const { imageUrl, title, author, year, genre } = route.params.item;
+  const { image, title, author, year, genre } = route.params.item;
   return (
     <ScrollView>
       <View style={styles.detailsContainer}>
-        {imageUrl === null ? (
+        {image.url === null ? (
           <View style={styles.imageContainerDetails} />
         ) : (
-          <Image source={{ uri: imageUrl }} style={styles.imageContainerDetails} />
+          <Image source={{ uri: image.url }} style={styles.imageContainerDetails} />
         )}
         <View style={styles.detailsTextContainer}>
           <Text style={styles.title}>{title}</Text>

@@ -4,11 +4,13 @@ import book from '@redux/book/reducer';
 import thunk from 'redux-thunk';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 
-const middlewares = [thunk, fetchMiddleware];
-const enhancers = [applyMiddleware(...middlewares), Reactotron.createEnhancer()];
+const middlewares = [applyMiddleware(thunk, fetchMiddleware)];
+if (__DEV__) {
+  middlewares.push(Reactotron.createEnhancer());
+}
 
 const rootReducer = CR({
   book
 });
 configureMergeState((state: any, newContent: any) => state.merge(newContent));
-export default createStore(rootReducer, compose(...enhancers));
+export default createStore(rootReducer, compose(...middlewares));
