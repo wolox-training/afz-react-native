@@ -10,7 +10,7 @@ const initialStateDescription = {
 export const initialState = completeState(initialStateDescription);
 
 const reducerDescription = {
-  primaryActions: [actions.GET_BOOKS]
+  primaryActions: [actions.LOGIN, actions.GET_BOOKS]
 };
 
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));
