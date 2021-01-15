@@ -12,7 +12,11 @@ function Library() {
   };
   return (
     <Stack.Navigator initialRouteName="BookList">
-      <Stack.Screen name="BookList" component={BookList} options={{ headerStyle: { height: 0 } }} />
+      <Stack.Screen
+        name="BookList"
+        component={BookList}
+        options={{ headerStyle: { height: 0 }, title: '' }}
+      />
       <Stack.Screen name="BookDetails" component={BookDetails} options={{ header }} />
     </Stack.Navigator>
   );
