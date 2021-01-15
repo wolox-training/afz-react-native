@@ -10,7 +10,7 @@ export const bookService = async () => {
     const user = await login('ignacio.coluccio@wolox.com.ar', 'wolox1189');
     return Promise.resolve({
       ok: true,
-      data: (await api.get('/books', (await user).headers)).data
+      data: (await api.get('/books', user.headers)).data
     }) as Promise<ApiResponse<any>>;
   } catch (e) {
     return Promise.resolve({
