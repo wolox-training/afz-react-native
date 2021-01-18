@@ -3,9 +3,9 @@ import { bookService, login } from '@services/BooksService';
 import { Dispatch } from 'redux';
 import { ApiOkResponse } from 'apisauce';
 
-export const actions = createTypes(completeTypes(['GET_BOOKS', 'LOGIN']), '@@BOOKS');
+export const actions = createTypes(completeTypes(['GET_BOOKS', 'LOGIN'], ['SET_SEARCH']), '@@BOOKS');
 
-export const targets = { books: 'books' };
+export const targets = { books: 'books', search: 'search' };
 
 export const actionsBook = {
   getBooks: (headers: any) => ({
@@ -13,6 +13,11 @@ export const actionsBook = {
     target: targets.books,
     service: bookService,
     payload: headers
+  }),
+  setSearch: (search: string) => ({
+    type: actions.SET_SEARCH,
+    payload: search,
+    target: targets.search
   })
 };
 
