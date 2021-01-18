@@ -48,10 +48,11 @@ export default StyleSheet.create({
     paddingRight: 20,
     width: '90%',
     backgroundColor: Colors.primary,
-    height: iconSize,
+    height: Platform.OS === 'ios' ? iconSize : iconSize + 10,
     borderRadius: 20
   },
   searchContainer: {
+    alignItems: 'center',
     marginHorizontal: space + 10,
     flexDirection: 'row',
     backgroundColor: Colors.primary,
