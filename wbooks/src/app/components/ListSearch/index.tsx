@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View, Image } from 'react-native';
 import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
@@ -25,10 +25,14 @@ function ListSearch() {
   const book = useSelector((state: State) => state.book);
   const { books, booksLoading, search } = book;
 
-  const booksFilter =
-    search === ''
-      ? []
-      : books?.filter((element: Book) => element.title.toLowerCase().includes(search.toLowerCase()));
+  const booksFilter = useMemo(
+    () =>
+      search === ''
+        ? []
+        : books?.filter((element: Book) => element.title.toLowerCase().includes(search.toLowerCase())),
+    [search, books]
+  );
+
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {
@@ -51,6 +55,7 @@ function ListSearch() {
     );
   };
   const keyExtractor = (item: Book) => `${item.id}`;
+
   return (
     <>
       {booksLoading ? (
