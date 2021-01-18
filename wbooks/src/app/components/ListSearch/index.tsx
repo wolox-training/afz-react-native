@@ -17,9 +17,10 @@ function ListSearch() {
   const book = useSelector((state: State) => state.book);
   const { books, booksLoading, search } = book;
 
-  const booksFilter = books?.filter((element: Book) =>
-    element.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const booksFilter =
+    search === ''
+      ? []
+      : books?.filter((element: Book) => element.title.toLowerCase().includes(search.toLowerCase()));
   const navigation = useNavigation();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {
