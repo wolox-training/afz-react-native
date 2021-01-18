@@ -25,8 +25,7 @@ function HeaderContainer({ route, title }: Header) {
   const navigation = useNavigation();
   const back = () => navigation.goBack();
   const search = () => navigation.navigate('ListSearch');
-  const onTextSearchChange = (value: React.SetStateAction<string>) =>
-    dispatch(actionsBook.setSearch(`${value}`));
+  const onTextSearchChange = (value: string) => dispatch(actionsBook.setSearch(value));
   const clear = () => dispatch(actionsBook.setSearch(''));
   const textSearch = useSelector((state: State) => state.book.search);
 

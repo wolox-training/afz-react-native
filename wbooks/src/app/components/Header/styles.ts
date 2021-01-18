@@ -2,6 +2,8 @@ import Colors from '@constants/Colors';
 import { Platform, StyleSheet } from 'react-native';
 
 const space = 10;
+const marginSpace = 20;
+const border = 20;
 export const iconSize = 26;
 const iconClose = 18;
 export default StyleSheet.create({
@@ -44,24 +46,23 @@ export default StyleSheet.create({
     height: iconSize
   },
   textInput: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
     width: '90%',
     backgroundColor: Colors.primary,
     height: Platform.OS === 'ios' ? iconSize : iconSize + 10,
-    borderRadius: 20
+    borderRadius: border
   },
   searchContainer: {
     alignItems: 'center',
-    marginHorizontal: space + 10,
+    marginHorizontal: marginSpace,
     flexDirection: 'row',
     backgroundColor: Colors.primary,
-    borderRadius: 20,
+    borderRadius: border,
     width: '90%'
   },
   searchHomeContainer: {
-    marginHorizontal: space + 10,
-    borderRadius: 20,
+    marginHorizontal: marginSpace,
+    borderRadius: border,
     width: iconSize
   },
   textContainer: {
