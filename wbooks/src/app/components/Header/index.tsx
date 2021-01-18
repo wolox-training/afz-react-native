@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import navBar from '@assets/bc_nav_bar.png';
 import icBack from '@assets/ic_back.png';
 import icSearch from '@assets/ic_search.png';
+import icNotifications from '@assets/ic_notifications.png';
 import Colors from '@constants/Colors';
 import { actionsBook } from '@redux/book/actions';
 import { BookState } from '@interfaces/BookState';
@@ -35,6 +36,13 @@ function HeaderContainer({ route, title }: Header) {
         <TouchableOpacity onPress={back}>
           <Image source={icBack} style={styles.buttonBack} />
         </TouchableOpacity>
+      )}
+      {name === 'BookList' && (
+        <View style={styles.searchHomeContainer}>
+          <TouchableOpacity>
+            <Image source={icNotifications} />
+          </TouchableOpacity>
+        </View>
       )}
       {name === 'ListSearch' && (
         <View style={styles.searchContainer}>
