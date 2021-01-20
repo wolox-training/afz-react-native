@@ -24,12 +24,17 @@ const component = (
     <ItemBook {...book} />
   </Provider>
 );
-const { getByText } = render(component);
 
 describe('ItemBook test', () => {
   it('it should show title and author of book', () => {
+    const { getByText } = render(component);
     const title = getByText(book.title);
     const author = getByText(book.author);
     expect([title, author]).toBeDefined();
+  });
+
+  it("shouldn't display the book id", () => {
+    const { queryByText } = render(component);
+    expect(queryByText(`${book.id}`)).toBeNull();
   });
 });
