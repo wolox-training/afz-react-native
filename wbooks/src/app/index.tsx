@@ -9,21 +9,18 @@
  */
 
 import 'react-native-gesture-handler';
+
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import Library from '@app/screens/Library';
-import Dummy from '@app/screens/Dummy';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image } from 'react-native';
-import icLibrary from '@assets/ic_library.png';
-import icLibraryActive from '@assets/ic_library_active.png';
-import icSettings from '@assets/ic_settings.png';
-import icSettingsActive from '@assets/ic_settings_active.png';
-import Colors from '@constants/Colors';
+import { createStackNavigator } from '@react-navigation/stack';
+import BookDetails from '@screens/BookDetails';
+import HeaderContainer from '@components/Header';
+import ListSearch from '@components/ListSearch';
+import { Header } from '@interfaces/Header';
 import { Provider } from 'react-redux';
 import store from '@redux/store';
-
-import styles from './styles';
+import Login from '@screens/Login';
+import Library from '@screens/Library';
+import { NavigationContainer } from '@react-navigation/native';
 
 declare global {
   interface Console {
@@ -31,26 +28,34 @@ declare global {
   }
 }
 
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const App = () => {
-  const tabBarOptions = ({ route }: any) => ({
-    tabBarIcon: ({ focused }: any) => {
-      let iconName = focused ? icSettingsActive : icSettings;
-      const tintColor = focused ? Colors.secondary : Colors.opacityColor;
-      if (route.name === 'Library') {
-        iconName = focused ? icLibraryActive : icLibrary;
-      }
-      return <Image source={iconName} style={[styles.iconTabBar, { tintColor }]} />;
-    }
-  });
+  const header = ({ route, title }: Header) => {
+    return <HeaderContainer title={title} route={route} />;
+  };
+
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Tab.Navigator screenOptions={tabBarOptions}>
-          <Tab.Screen name="Library" component={Library} />
-          <Tab.Screen name="Dummy" component={Dummy} />
-        </Tab.Navigator>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={Login} options={{ title: '', headerStyle: { height: 0 } }} />
+          <Stack.Screen
+            name="Library"
+            component={Library}
+            options={{ title: '', headerStyle: { height: 0 } }}
+          />
+          <Stack.Screen
+            name="BookDetails"
+            component={BookDetails}
+            options={{ header: route => header({ route: route.scene.route, title: 'BOOK DETAILS' }) }}
+          />
+          <Stack.Screen
+            name="ListSearch"
+            component={ListSearch}
+            options={{ header: route => header({ route, title: '' }) }}
+          />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );

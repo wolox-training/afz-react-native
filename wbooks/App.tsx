@@ -3,7 +3,7 @@ import React from 'react';
 import App from './src/app';
 
 if (__DEV__) {
-  import('./src/config/reactotronConfig').then(() => console.log('Reactotron Configured'));
+  import('./src/config/reactotronConfig');
 }
 
 export default function index() {
