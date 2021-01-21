@@ -42,5 +42,8 @@ export default StyleSheet.create({
     left: 0,
     right: 0,
     textAlign: 'center'
+  },
+  textError: {
+    color: Colors.red
   }
 });

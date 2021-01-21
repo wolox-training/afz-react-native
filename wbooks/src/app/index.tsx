@@ -43,7 +43,7 @@ const App = () => {
           <Stack.Screen
             name="Library"
             component={Library}
-            options={{ title: '', headerStyle: { height: 0 } }}
+            options={{ title: '', headerStyle: { height: 0 }, headerShown: false }}
           />
           <Stack.Screen
             name="BookDetails"
