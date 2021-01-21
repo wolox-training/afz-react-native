@@ -137,6 +137,16 @@ android {
         versionName "1.0"
         resValue "string", "build_config_package", "com.wbooks"
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('WBOOKS_RELEASE_STORE_FILE')) {
+                storeFile file(WBOOKS_RELEASE_STORE_FILE)
+                storePassword WBOOKS_RELEASE_STORE_PASSWORD
+                keyAlias WBOOKS_RELEASE_KEY_ALIAS
+                keyPassword WBOOKS_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
     splits {
         abi {
             reset()

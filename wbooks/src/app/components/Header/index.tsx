@@ -20,8 +20,7 @@ interface State {
 function HeaderContainer({ route, title }: Header) {
   const dispatch = useDispatch();
 
-  const { name } = route.scene.route;
-
+  const { name } = route;
   const navigation = useNavigation();
   const back = () => navigation.goBack();
   const search = () => navigation.navigate('ListSearch');

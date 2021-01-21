@@ -1,35 +1,34 @@
 import React from 'react';
-import BookList from '@app/components/BookList';
-import { createStackNavigator } from '@react-navigation/stack';
-import BookDetails from '@app/screens/BookDetails';
-import HeaderContainer from '@components/Header';
-import ListSearch from '@components/ListSearch';
-import { Header } from '@interfaces/Header';
+import Dummy from '@app/screens/Dummy';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
+import icLibrary from '@assets/ic_library.png';
+import icLibraryActive from '@assets/ic_library_active.png';
+import icSettings from '@assets/ic_settings.png';
+import icSettingsActive from '@assets/ic_settings_active.png';
+import Colors from '@constants/Colors';
+import BookList from '@components/BookList';
 
-const Stack = createStackNavigator();
+import styles from './styles';
+
+const Tab = createBottomTabNavigator();
 
 function Library() {
-  const header = ({ route, title }: Header) => {
-    return <HeaderContainer title={title} route={route} />;
-  };
+  const tabBarOptions = ({ route }: any) => ({
+    tabBarIcon: ({ focused }: any) => {
+      let iconName = focused ? icSettingsActive : icSettings;
+      const tintColor = focused ? Colors.secondary : Colors.opacityColor;
+      if (route.name === 'BookList') {
+        iconName = focused ? icLibraryActive : icLibrary;
+      }
+      return <Image source={iconName} style={[styles.iconTabBar, { tintColor }]} />;
+    }
+  });
   return (
-    <Stack.Navigator initialRouteName="BookList">
-      <Stack.Screen
-        name="BookList"
-        component={BookList}
-        options={{ header: route => header({ route, title: 'LIBRARY' }) }}
-      />
-      <Stack.Screen
-        name="BookDetails"
-        component={BookDetails}
-        options={{ header: route => header({ route, title: 'BOOK DETAILS' }) }}
-      />
-      <Stack.Screen
-        name="ListSearch"
-        component={ListSearch}
-        options={{ header: route => header({ route, title: '' }) }}
-      />
-    </Stack.Navigator>
+    <Tab.Navigator screenOptions={tabBarOptions}>
+      <Tab.Screen name="BookList" component={BookList} />
+      <Tab.Screen name="Dummy" component={Dummy} />
+    </Tab.Navigator>
   );
 }
 

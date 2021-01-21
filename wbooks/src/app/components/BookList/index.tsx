@@ -3,10 +3,11 @@ import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-na
 import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
 import { BookState } from '@interfaces/BookState';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import actionCreators from '@redux/book/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import Config from 'react-native-config';
+import HeaderContainer from '@components/Header';
 
 import styles from './styles';
 
@@ -23,6 +24,7 @@ function BookList() {
   const book = useSelector((state: State) => state.book);
   const { books, booksLoading } = book;
   const navigation = useNavigation();
+  const route = useRoute();
   const renderItem: ListRenderItem<Book> = ({ item }: { item: Book }) => {
     const bookDetails = () => {
       navigation.navigate('BookDetails', { item });
@@ -36,6 +38,7 @@ function BookList() {
   const keyExtractor = (item: Book) => `${item.id}`;
   return (
     <>
+      <HeaderContainer title="LIBRARY" route={route} />
       {booksLoading ? (
         <View style={styles.loadingContainer}>
           <Text style={styles.textLoading}>Loading...</Text>
