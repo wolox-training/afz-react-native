@@ -53,7 +53,7 @@ const App = () => {
           <Stack.Screen
             name="ListSearch"
             component={ListSearch}
-            options={{ header: route => header({ route, title: '' }) }}
+            options={{ header: route => header({ route: route.scene.route, title: '' }) }}
           />
         </Stack.Navigator>
       </NavigationContainer>

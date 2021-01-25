@@ -4,17 +4,13 @@ import Immutable from 'seamless-immutable';
 import { actions } from './actions';
 
 const initialStateDescription = {
-  books: null,
-  search: ''
+  user: null
 };
 
 export const initialState = completeState(initialStateDescription);
 
 const reducerDescription = {
-  primaryActions: [actions.GET_BOOKS],
-  override: {
-    [actions.SET_SEARCH]: (state: any, action: { payload: any }) => ({ ...state, search: action.payload })
-  }
+  primaryActions: [actions.LOGIN]
 };
 
 export default createReducer(Immutable(initialState), completeReducer(reducerDescription));

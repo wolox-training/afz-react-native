@@ -8,7 +8,7 @@ import icBack from '@assets/ic_back.png';
 import icSearch from '@assets/ic_search.png';
 import icNotifications from '@assets/ic_notifications.png';
 import Colors from '@constants/Colors';
-import { actionsBook } from '@redux/book/actions';
+import actionsBook from '@redux/book/actions';
 import { BookState } from '@interfaces/BookState';
 
 import styles from './styles';
