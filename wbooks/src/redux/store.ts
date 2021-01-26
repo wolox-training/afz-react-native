@@ -1,6 +1,7 @@
 import { applyMiddleware, compose, createStore, combineReducers as CR } from 'redux';
 import Reactotron from '@config/reactotronConfig';
 import book from '@redux/book/reducer';
+import login from '@redux/login/reducer';
 import thunk from 'redux-thunk';
 import { fetchMiddleware, configureMergeState } from 'redux-recompose';
 
@@ -10,7 +11,8 @@ if (__DEV__) {
 }
 
 const rootReducer = CR({
-  book
+  book,
+  login
 });
 configureMergeState((state: any, newContent: any) => state.merge(newContent));
 export default createStore(rootReducer, compose(...middlewares));

@@ -1,11 +1,6 @@
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import { fetchMiddleware } from 'redux-recompose';
-import Config from 'react-native-config';
-
 import api from '../../src/config/api';
 import BookReducer, { initialState } from '../../src/redux/book/reducer';
-import BookActions, { actions, targets } from '../../src/redux/book/actions';
+import { actions, targets } from '../../src/redux/book/actions';
 import { bookService } from '../../src/services/BooksService';
 
 const action = {
@@ -39,20 +34,5 @@ describe('BookReducer test', () => {
       booksLoading: false,
       books: undefined
     });
-  });
-});
-
-describe('BookActions test', () => {
-  const middlewares = [thunk, fetchMiddleware];
-  const mockStore = configureStore(middlewares);
-
-  it('should dispatch action login', () => {
-    const store = mockStore(initialState);
-
-    store.dispatch(BookActions.login(Config.EMAIL_USER, Config.PASS_USER));
-
-    const actionsStore = store.getActions();
-    const expectedPayload = { type: '@@BOOKS/LOGIN' };
-    expect(actionsStore).toEqual([expectedPayload]);
   });
 });

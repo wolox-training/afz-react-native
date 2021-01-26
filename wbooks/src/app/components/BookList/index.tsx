@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FlatList, ListRenderItem, Text, TouchableOpacity, View } from 'react-native';
 import ItemBook from '@components/ItemBook';
 import { Book } from '@interfaces/Book';
 import { BookState } from '@interfaces/BookState';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import actionCreators from '@redux/book/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import Config from 'react-native-config';
+import { useSelector } from 'react-redux';
 import HeaderContainer from '@components/Header';
 
 import styles from './styles';
@@ -16,11 +14,6 @@ interface State {
 }
 
 function BookList() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(actionCreators.login(Config.EMAIL_USER, Config.PASS_USER));
-  }, [dispatch]);
-
   const book = useSelector((state: State) => state.book);
   const { books, booksLoading } = book;
   const navigation = useNavigation();

@@ -5,7 +5,7 @@ import { Book } from '@interfaces/Book';
 import { BookState } from '@interfaces/BookState';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
-import { actionsBook } from '@redux/book/actions';
+import actionsBook from '@redux/book/actions';
 import bigSearch from '@assets/ic_search_big.png';
 
 import styles from './styles';
