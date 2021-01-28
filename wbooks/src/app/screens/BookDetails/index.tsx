@@ -16,26 +16,28 @@ function BookDetails() {
   const [rental, setRental] = useState(false);
   const route = useRoute<RouteBook>();
 
+  const duration = 300;
+
   const rent = () => {
     Animated.parallel([
       Animated.timing(widthButton, {
         toValue: rental ? 200 : 60,
-        duration: 500,
+        duration,
         useNativeDriver: false
       }),
       Animated.timing(animation, {
         toValue: rental ? 0 : 1,
-        duration: 500,
+        duration,
         useNativeDriver: false
       }),
       Animated.timing(widthText, {
         toValue: rental ? 1 : 0,
-        duration: 300,
+        duration,
         useNativeDriver: false
       }),
       Animated.timing(widthIcon, {
         toValue: rental ? 0 : 1,
-        duration: 300,
+        duration,
         useNativeDriver: false
       })
     ]).start(() => setRental(!rental));
