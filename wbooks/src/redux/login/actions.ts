@@ -30,6 +30,7 @@ const actionCreators = {
             })
           );
         } catch (e) {
+          // eslint-disable-next-line no-console
           if (__DEV__) console.tron.log(`Error storaging data in local storage: ${e}`);
         }
       })

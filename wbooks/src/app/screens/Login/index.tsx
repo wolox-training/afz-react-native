@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Image, ImageBackground, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
@@ -16,29 +16,30 @@ interface Data {
   password: string;
 }
 
-const GetData = async () => {
+function Login() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  try {
-    const value = await AsyncStorage.getItem('userHeaders');
-    if (value !== null) {
-      dispatch(actionsBook.getBooks(JSON.parse(value)));
-      navigation.navigate('Library');
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('userHeaders');
+      if (value !== null) {
+        dispatch(actionsBook.getBooks(JSON.parse(value)));
+        navigation.navigate('Library');
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      if (__DEV__) console.tron.log(`Error in getItem userHeaders ${e}`);
     }
-  } catch (e) {
-    // error reading value
-  }
-};
+  };
 
-function Login() {
-  const navigation = useNavigation();
-  GetData();
+  useEffect(() => {
+    getData();
+  });
+
   const { handleSubmit, control, errors } = useForm();
 
   const EMAIL_REGEX = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{1,}))$/;
   const PASSWORD_REGEX = /^([A-Z]|[0-9]){5,}$/i;
-
-  const dispatch = useDispatch();
 
   const onSubmit = (data: Data) => {
     dispatch(actionCreators.login(data.user, data.password, navigation));
