@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Colors from '@constants/Colors';
 
+const widthIcon = 33;
 export default StyleSheet.create({
   imageContainerDetails: {
     width: 100,
@@ -30,9 +31,11 @@ export default StyleSheet.create({
   },
   buttonLarge: {
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 60,
     margin: 5,
-    marginHorizontal: 40
+    marginHorizontal: 40,
+    width: 200,
+    alignSelf: 'center'
   },
   textButton: {
     textAlign: 'center',
@@ -40,7 +43,8 @@ export default StyleSheet.create({
     fontSize: 16
   },
   textPrimary: {
-    color: Colors.primary
+    color: Colors.primary,
+    alignSelf: 'center'
   },
   textSecondary: {
     color: Colors.secondary
@@ -52,5 +56,14 @@ export default StyleSheet.create({
   textDetails: {
     fontSize: 15,
     color: Colors.opacityColor
+  },
+  icon: {
+    width: widthIcon,
+    height: widthIcon,
+    tintColor: Colors.primary,
+    alignSelf: 'center'
+  },
+  buttonTouch: {
+    width: '100%'
   }
 });
